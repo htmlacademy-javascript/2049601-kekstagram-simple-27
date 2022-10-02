@@ -12,17 +12,8 @@ function getRandomIntInclusive(min, max) {
 getRandomIntInclusive(5, 8);
 
 //Функция для проверки максимальной длины строки
-// первый вариант - полное написание
-/*function meterStringlength (string, length) {
-  if (length >= 20 && length <= 140) {
-    return true;
-  }
-
-  return false;
-}*/
-//второй вариант пробую тернарный оператор. Какое написание можно использовать?
-function meterStringlength (string, length) {
-  return !!((length >= 20 && length <= 140)); //До автоисправления eslint было так - return (length >= 20 && length <= 140) ? true : false;
+function checkStringLength (string, maxLength) {
+  return string.length <= maxLength;
 }
 
-meterStringlength (2, 100);
+checkStringLength('50', 140);
