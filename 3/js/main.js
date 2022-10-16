@@ -53,7 +53,8 @@ function createPhotoDescription () {
 }
 
 //Метод генерации массива заданной длины
-const randomPhotoDescription = Array.from({length: 25}, createPhotoDescription);
+function getRandomPhotoDescription () {
+  return Array.from({length: 25}, createPhotoDescription);
+}
 
-// eslint-disable-next-line no-console
-console.log(randomPhotoDescription);
+getRandomPhotoDescription();
