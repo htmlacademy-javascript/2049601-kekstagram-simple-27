@@ -53,8 +53,8 @@ function createPhotoDescription () {
 }
 
 //Метод генерации массива заданной длины
-function randomPhotoDescription () {
+function getRandomPhotoDescription () {
   return Array.from({length: 25}, createPhotoDescription);
 }
 
-randomPhotoDescription();
+getRandomPhotoDescription();
