@@ -1,6 +1,6 @@
 // Четвертое домашее задание
 //Создание массива изначальных данных
-const NUMBER = 25;
+const PHOTO_DESCRIPTION_COUNT = 25;
 const MIN_LIKES_COUNT = 15;
 const MAX_LIKES_COUNT = 200;
 const MIN_COMMENTS_COUNT = 0;
@@ -13,7 +13,7 @@ const DESCRIPTIONS = [
 const identifiers = [];
 const urls = [];
 
-for (let i = 1; i <= NUMBER; i++) {
+for (let i = 1; i <= PHOTO_DESCRIPTION_COUNT; i++) {
   identifiers.push(i);
   urls.push(`photos/${i}.jpg`);
 }
@@ -54,7 +54,7 @@ function createPhotoDescription () {
 
 //Метод генерации массива заданной длины
 function getRandomPhotoDescription () {
-  return Array.from({length: 25}, createPhotoDescription);
+  return Array.from({length: PHOTO_DESCRIPTION_COUNT}, createPhotoDescription);
 }
 
 getRandomPhotoDescription();
