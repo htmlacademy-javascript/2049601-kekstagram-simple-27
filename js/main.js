@@ -1,3 +1,3 @@
-import {getRandomPhotoDescription} from './data.js';
+import {getThumbnails} from './thumbnails-rendering.js';
 
-getRandomPhotoDescription();
+getThumbnails();
