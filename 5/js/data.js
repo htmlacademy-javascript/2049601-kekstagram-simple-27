@@ -20,7 +20,7 @@ for (let i = 1; i <= PHOTO_DESCRIPTION_COUNT; i++) {
 }
 
 //Функция, создающая описание фотографии (builder)
-function createPhotoDescription () {
+const createPhotoDescription = function () {
   return {
     id: getRandomArrayElement(identifiers),
     url: getRandomArrayElement(urls),
@@ -28,11 +28,11 @@ function createPhotoDescription () {
     likes: getRandomIntInclusive(MIN_LIKES_COUNT, MAX_LIKES_COUNT),
     comments: getRandomIntInclusive(MIN_COMMENTS_COUNT, MAX_COMMENTS_COUNT),
   };
-}
+};
 
 //Метод генерации массива заданной длины
-function getRandomPhotoDescription () {
+const getRandomPhotoDescription = function () {
   return Array.from({length: PHOTO_DESCRIPTION_COUNT}, createPhotoDescription);
-}
+};
 
 export {getRandomPhotoDescription};

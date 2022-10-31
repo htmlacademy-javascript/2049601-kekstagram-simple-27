@@ -1,5 +1,5 @@
 //Функция, возвращающая случайное целое число из переданного диапазона включительно - взято на MDN - https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-function getRandomIntInclusive(min, max) {
+const getRandomIntInclusive = function (min, max) {
   if (min >= 0 && max >= 0 && min < max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -7,16 +7,16 @@ function getRandomIntInclusive(min, max) {
   }
 
   return NaN;
-}
+};
 
 //Функция для проверки максимальной длины строки
-function checkStringLength (string, maxLength) {
+const checkStringLength = function (string, maxLength) {
   return string.length <= maxLength;
-}
+};
 
 //Функция, возвращающая индекс элемента массива данных
-function getRandomArrayElement (еlement) {
+const getRandomArrayElement = function (еlement) {
   return еlement[getRandomIntInclusive(0, еlement.length - 1)];
-}
+};
 
 export {getRandomIntInclusive, checkStringLength, getRandomArrayElement};
