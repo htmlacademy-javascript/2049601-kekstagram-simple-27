@@ -48,17 +48,20 @@ const addCloseOverlay = function () {
 };
 
 //Валидация формы отправки изображения
+//1.Создает экземплятор валидатора и передает в него элемент формы
 const pristine = new Pristine(form, {
   classTo: 'img-upload__text',
   errorTextClass: 'img-upload__text',
 });
 
+//2. Вызывает метод .addValidator() для описания валидации
 pristine.addValidator(
-  commentField,
-  checkStringLength(commentField, minCommentLength, maxCommentLength),
-  `Длина комментария не может быть меньше ${minCommentLength} и больше ${maxCommentLength} символов`,
+  commentField, //элемент формы, который мы хотим валидировать
+  checkStringLength(commentField, minCommentLength, maxCommentLength), //функция проверки
+  `Длина комментария не может быть меньше ${minCommentLength} и больше ${maxCommentLength} символов`,//сообщение об ошибке
 );
 
+//3. Добавляет обработчик событий с методом .validate()
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();
