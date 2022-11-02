@@ -19,4 +19,7 @@ const getRandomArrayElement = function (еlement) {
   return еlement[getRandomIntInclusive(0, еlement.length - 1)];
 };
 
-export {getRandomIntInclusive, checkStringLength, getRandomArrayElement};
+//Проверка нажатия клавиши Esc
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export {getRandomIntInclusive, checkStringLength, getRandomArrayElement, isEscapeKey};
