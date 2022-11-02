@@ -10,8 +10,13 @@ const getRandomIntInclusive = function (min, max) {
 };
 
 //Функция для проверки максимальной длины строки
-const checkStringLength = function (string, maxLength) {
-  return string.length <= maxLength;
+// const checkStringLength = function (string, minLength, maxLength) {
+//   return string.length >= minLength && string.length <= maxLength;
+// };
+
+//Функция для проверки длины строки
+const checkStringLength = function (value, minLength, maxLength) {
+  return value.length >= minLength && value.length <= maxLength;
 };
 
 //Функция, возвращающая индекс элемента массива данных
