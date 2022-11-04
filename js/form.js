@@ -44,7 +44,7 @@ closeUploadOverlayElement.addEventListener('click', () => {
 });
 
 //Валидация формы отправки изображения
-//1.Создает экземплятор валидатора и передает в него элемент формы
+//1.Создает экземплятор валидатора и передает в него форму
 const pristine = new Pristine(form, {
   classTo: 'img-upload__text',
   errorTextParent: 'img-upload__text',
