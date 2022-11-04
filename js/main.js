@@ -3,5 +3,3 @@ import './form.js';
 
 
 getThumbnails();
-
-
