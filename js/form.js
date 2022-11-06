@@ -31,7 +31,7 @@ function closeUploadOverlay () {
 
   document.removeEventListener('keydown', onUploadOverlayEscKeydown);
   uploadFileInput.value = '';
-};
+}
 
 //Добавляет обработчик событий - при загрузке фото, открывается оверлей
 uploadFileInput.addEventListener('change', () => {
