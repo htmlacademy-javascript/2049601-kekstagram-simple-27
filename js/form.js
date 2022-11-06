@@ -1,12 +1,12 @@
 import {checkStringLength, isEscapeKey} from './util.js';
 
+const MIN_COMMENTH_LENGTH = 40;
+const MAX_COMMENTH_LENGTH = 140;
 const form = document.querySelector('.img-upload__form');
 const uploadFileInput = document.querySelector('#upload-file');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const closeUploadOverlayElement = document.querySelector('#upload-cancel');
 const commentField = document.querySelector('.text__description');
-const MINCOMMENTHLENGTH = 40;
-const MAXCOMMENTHLENGTH = 140;
 
 //Функция проверяет нажатия Esc и закрывает оверлей загрузки фото
 const onUploadOverlayEscKeydown = (evt) => {
@@ -25,7 +25,7 @@ const openUploadOverlay = function () {
 };
 
 //Функция закрывает оверлей загрузки фото
-const closeUploadOverlay = function () {
+function closeUploadOverlay () {
   uploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
 
@@ -52,14 +52,14 @@ const pristine = new Pristine(form, {
 
 //2. Функция проверки
 const validateTextarea = function (value) {
-  return checkStringLength(value, MINCOMMENTHLENGTH, MAXCOMMENTHLENGTH);
+  return checkStringLength(value, MIN_COMMENTH_LENGTH, MAX_COMMENTH_LENGTH);
 };
 
 //3. Вызывает метод .addValidator() для описания валидации
 pristine.addValidator(
   commentField, //элемент формы, который мы хотим валидировать
   validateTextarea, //функция проверки
-  `Длина комментария не может быть меньше ${MINCOMMENTHLENGTH} и больше ${MAXCOMMENTHLENGTH} символов`,//сообщение об ошибке
+  `Длина комментария не может быть меньше ${MIN_COMMENTH_LENGTH} и больше ${MAX_COMMENTH_LENGTH} символов`,//сообщение об ошибке
 );
 
 //3. Добавляет обработчик событий с методом .validate()
