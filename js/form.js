@@ -1,4 +1,5 @@
 import {checkStringLength, isEscapeKey} from './util.js';
+import {resetScaleInput} from './scale.js';
 
 const MIN_COMMENTH_LENGTH = 40;
 const MAX_COMMENTH_LENGTH = 140;
@@ -31,6 +32,7 @@ function closeUploadOverlay () {
 
   document.removeEventListener('keydown', onUploadOverlayEscKeydown);
   uploadFileInput.value = '';
+  resetScaleInput();
 }
 
 //Добавляет обработчик событий - при загрузке фото, открывается оверлей
