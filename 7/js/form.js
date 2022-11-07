@@ -1,7 +1,7 @@
 import {checkStringLength, isEscapeKey} from './util.js';
 import {resetScaleInput} from './scale.js';
 
-const MIN_COMMENTH_LENGTH = 40;
+const MIN_COMMENTH_LENGTH = 20;
 const MAX_COMMENTH_LENGTH = 140;
 const form = document.querySelector('.img-upload__form');
 const uploadFileInput = document.querySelector('#upload-file');
