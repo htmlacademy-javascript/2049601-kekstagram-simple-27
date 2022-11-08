@@ -10,7 +10,7 @@ const image = document.querySelector('.img-upload__preview img');
 
 const scaleImage = function (value = DEFAULT_SCALE) {
   scaleInput.value = `${value}%`;
-  image.style.transform = `scale(${value / 100})`;
+  image.style.transform = `scale(${value / DEFAULT_SCALE})`;
 };
 
 const onSmallerButtonClick = function () {
