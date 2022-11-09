@@ -63,10 +63,7 @@ const onFormChange = function (evt) {
   }
 
   chosenEffect = EFFECTS.find((effect) => effect.name === evt.target.value);
-  if (image.classList.contains(`effects__preview--${chosenEffect}`)) {
-    image.classList.remove(`effects__preview--${chosenEffect}`);
-  }
-
+  image.classNamme = '';
   image.classList.add(`effects__preview--${chosenEffect}`);
 };
 
