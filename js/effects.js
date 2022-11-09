@@ -57,31 +57,21 @@ const effectLevelElemet = document.querySelector('.effect-level__value');
 
 let chosenEffect = DEFAULT_EFFECT;
 
-const onFormChange = function (evt) {
-  if (!evt.target.classList.contains('effects__radio')) {
-    return;
-  }
-
-  chosenEffect = EFFECTS.find((effect) => effect.name === evt.target.value);
-  image.classNamme = '';
-  image.classList.add(`effects__preview--${chosenEffect}`);
+const isDefault = function () {
+  return chosenEffect === DEFAULT_EFFECT;
 };
-
-form.addEventListener ('change', onFormChange);
-
-const isDefault = () => chosenEffect === DEFAULT_EFFECT;
 
 noUiSlider.create(sliderElement, {
   range: {
-    min: 0,
-    max: 100,
+    min: chosenEffect.min,
+    max: chosenEffect.max,
   },
-  start: 100,
-  step: 1,
+  start: chosenEffect.max,
+  step: chosenEffect.step,
   connect: 'lower',
 },);
 
-const updateSlider = () => {
+const updateSlider = function () {
   sliderElement.classList.remove('hidden');
 
   sliderElement.noUiSlider.updateOptions({
@@ -93,13 +83,33 @@ const updateSlider = () => {
     start: chosenEffect.max,
   });
 
-  if (isDefault) {
+  if (isDefault()) {
     sliderElement.classList.add('hidden');
+    image.style.filter = '';
   }
 };
 
-updateSlider();
+const resetEffets = function () {
+  chosenEffect = DEFAULT_EFFECT;
+  updateSlider();
+};
+
+const onFormChange = function (evt) {
+  if (!evt.target.classList.contains('effects__radio')) {
+    return;
+  }
+
+  chosenEffect = EFFECTS.find((effect) => effect.name === evt.target.value);
+  image.className = '';
+  image.classList.add(`effects__preview--${chosenEffect.name}`);
+  updateSlider();
+};
+
+form.addEventListener ('change', onFormChange);
 
 sliderElement.noUiSlider.on('update', () => {
   effectLevelElemet.value = sliderElement.noUiSlider.get();
+  image.style.filter = `${chosenEffect.filter}(${effectLevelElemet.value}${chosenEffect.unit})`;
 });
+
+export {resetEffets};
