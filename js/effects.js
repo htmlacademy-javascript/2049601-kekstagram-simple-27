@@ -86,6 +86,7 @@ const updateSlider = function () {
   if (isDefault()) {
     sliderElement.classList.add('hidden');
     image.style.filter = '';
+    image.className = '';
   }
 };
 
