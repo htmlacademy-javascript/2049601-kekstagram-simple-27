@@ -65,8 +65,27 @@ pristine.addValidator(
   `Длина комментария не может быть меньше ${MIN_COMMENTH_LENGTH} и больше ${MAX_COMMENTH_LENGTH} символов`,//сообщение об ошибке
 );
 
-//3. Добавляет обработчик событий с методом .validate()
-form.addEventListener('submit', (evt) => {
-  const isValid = pristine.validate();
-  if (!isValid) {evt.preventDefault();}
-});
+/*Добавляет функцию - создающую обработчик событий с методом .validate(), и, если форма валидна,
+данные формы запишутся в объект formData и отправятся на сервер, параметр - колбэк, будет вызван при успешной отправке формы*/
+
+const formSubmit = function (onSuccess) {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    const isValid = pristine.validate();
+    if (isValid) {
+      const formData = new FormData(evt.target);
+
+      fetch(
+        'https://27.javascript.pages.academy/kekstagram-simple',
+        {
+          method: 'POST',
+          body: formData,
+        },
+      ).then(() => onSuccess());
+    }
+  });
+};
+
+//Вызов функции, аргументом передается функци закрытия оверлея - колбэк
+formSubmit(closeUploadOverlay);

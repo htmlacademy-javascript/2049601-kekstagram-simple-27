@@ -35,4 +35,3 @@ fetch('https://27.javascript.pages.academy/kekstagram-simple/data')
   .catch(() => {
     showAlert('Не удалось загрузить фотографии других пользователей');
   });
-
