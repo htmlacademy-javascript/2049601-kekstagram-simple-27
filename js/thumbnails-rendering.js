@@ -1,22 +1,17 @@
-import {getRandomPhotoDescription} from './data.js';
-
 //Находим контейнер для изображений от других пользователей
 const picturesList = document.querySelector('.pictures');
 
 //Находим в документе шаблон, который мы будем копировать
 const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-//Создаем массив с объектами - описаниями фотографий
-const photosDescription = getRandomPhotoDescription();
-
-/*Функция, добавляющая, заполненное сгенерированными миниаютюрами фото, хранилище
+/*Функция, добавляющая, заполненное полученными от сервера миниаютюрами фото, хранилище
 в контейнер для изображений от других пользователей*/
-const getThumbnails = function () {
+const getThumbnails = function (data) {
   //Создаем хранилище для создаваемых миниатюр фото других пользователей
   const picturesFragment = document.createDocumentFragment();
 
   //Проходимся по массиву с объектами, получая данные для вставки в шаблон и складывая их в хранилище
-  photosDescription.forEach(({url, description, comments, likes}) => {
+  data.forEach(({url, description, comments, likes}) => {
     const photo = photoTemplate.cloneNode(true);
     photo.querySelector('.picture__img').src = url;
     photo.querySelector('.picture__img').alt = description;
