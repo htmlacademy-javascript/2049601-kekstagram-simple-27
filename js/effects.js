@@ -113,4 +113,4 @@ sliderElement.noUiSlider.on('update', () => {
   image.style.filter = `${chosenEffect.filter}(${effectLevelElemet.value}${chosenEffect.unit})`;
 });
 
-export {resetEffets};
+export {resetEffets, onFormChange};

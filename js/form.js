@@ -87,5 +87,4 @@ const formSubmit = function (onSuccess) {
   });
 };
 
-//Вызов функции, аргументом передается функци закрытия оверлея - колбэк
-formSubmit(closeUploadOverlay);
+export {formSubmit, closeUploadOverlay};
