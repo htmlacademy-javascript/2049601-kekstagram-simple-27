@@ -1,6 +1,7 @@
 import {checkStringLength, isEscapeKey} from './util.js';
 import {resetScaleInput} from './scale.js';
 import {resetEffets} from './effects.js';
+import {getSuccessMessage, getErrorMessage} from './creating-messages.js';
 
 const MIN_COMMENTH_LENGTH = 20;
 const MAX_COMMENTH_LENGTH = 140;
@@ -31,7 +32,7 @@ const openUploadOverlay = function () {
 function closeUploadOverlay () {
   uploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
-
+  getSuccessMessage();
   document.removeEventListener('keydown', onUploadOverlayEscKeydown);
   uploadFileInput.value = '';
 }
@@ -77,12 +78,14 @@ const formSubmit = function (onSuccess) {
       const formData = new FormData(evt.target);
 
       fetch(
-        'https://27.javascript.pages.academy/kekstagram-simple',
+        'https://27.javascript.pages.cademy/kekstagram-simple',
         {
           method: 'POST',
           body: formData,
         },
-      ).then(() => onSuccess());
+      )
+        .then(() => onSuccess())
+        .catch(() => getErrorMessage());
     }
   });
 };

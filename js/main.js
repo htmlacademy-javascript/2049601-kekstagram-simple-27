@@ -1,5 +1,6 @@
 import './form.js';
 import './scale.js';
+import './creating-messages.js';
 
 import {formSubmit, closeUploadOverlay} from './form.js';
 import {getPhotosOtherUsers} from './api.js';
