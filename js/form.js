@@ -32,7 +32,7 @@ const openUploadOverlay = function () {
 function closeUploadOverlay () {
   uploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  getSuccessMessage();
+
   document.removeEventListener('keydown', onUploadOverlayEscKeydown);
   uploadFileInput.value = '';
 }
@@ -78,13 +78,14 @@ const formSubmit = function (onSuccess) {
       const formData = new FormData(evt.target);
 
       fetch(
-        'https://27.javascript.pages.cademy/kekstagram-simple',
+        'https://27.javascript.pages.academy/kekstagram-simple',
         {
           method: 'POST',
           body: formData,
         },
       )
         .then(() => onSuccess())
+        .then(() => getSuccessMessage())
         .catch(() => getErrorMessage());
     }
   });
