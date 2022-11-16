@@ -1,5 +1,5 @@
 import './scale.js';
-
+import './upload-image.js';
 import {formSubmit, onSuccessfulSending, onFailSending} from './form.js';
 import {getData} from './api.js';
 import {onFormChange} from './effects.js';
