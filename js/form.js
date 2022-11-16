@@ -2,6 +2,7 @@ import {checkStringLength, isEscapeKey} from './util.js';
 import {resetScaleInput} from './scale.js';
 import {resetEffets} from './effects.js';
 import {getSuccessMessage, getErrorMessage} from './creating-messages.js';
+import {sendData} from './api.js';
 
 const MIN_COMMENTH_LENGTH = 20;
 const MAX_COMMENTH_LENGTH = 140;
@@ -10,6 +11,8 @@ const uploadFileInput = document.querySelector('#upload-file');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const closeUploadOverlayElement = document.querySelector('#upload-cancel');
 const commentField = document.querySelector('.text__description');
+const submitButton = document.querySelector('.img-upload__submit');
+
 
 //Функция проверяет нажатия Esc и закрывает оверлей загрузки фото
 const onUploadOverlayEscKeydown = (evt) => {
@@ -36,6 +39,15 @@ function closeUploadOverlay () {
   document.removeEventListener('keydown', onUploadOverlayEscKeydown);
   uploadFileInput.value = '';
 }
+
+const onSuccessfulSending = function () {
+  closeUploadOverlay();
+  getSuccessMessage();
+};
+
+const onFailSending = function () {
+  getErrorMessage();
+};
 
 //Добавляет обработчик событий - при загрузке фото, открывается оверлей
 uploadFileInput.addEventListener('change', () => {
@@ -67,28 +79,21 @@ pristine.addValidator(
 );
 
 /*Добавляет функцию - создающую обработчик событий с методом .validate(), и, если форма валидна,
-данные формы запишутся в объект formData и отправятся на сервер, параметр - колбэк, будет вызван при успешной отправке формы*/
+данные формы запишутся в объект formData и отправятся на сервер, параметр - колбэк, будет вызван при успешной/неуспешной отправке формы*/
 
-const formSubmit = function (onSuccess) {
+const formSubmit = function (onSuccess, onFail) {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
     const isValid = pristine.validate();
     if (isValid) {
-      const formData = new FormData(evt.target);
-
-      fetch(
-        'https://27.javascript.pages.academy/kekstagram-simple',
-        {
-          method: 'POST',
-          body: formData,
-        },
-      )
-        .then(() => onSuccess())
-        .then(() => getSuccessMessage())
-        .catch(() => getErrorMessage());
+      sendData(
+        () => onSuccess(),
+        () => onFail(),
+        new FormData(evt.target),
+      );
     }
   });
 };
 
-export {formSubmit, closeUploadOverlay};
+export {formSubmit, onSuccessfulSending, onFailSending};
