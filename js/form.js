@@ -78,6 +78,16 @@ pristine.addValidator(
   `Длина комментария не может быть меньше ${MIN_COMMENTH_LENGTH} и больше ${MAX_COMMENTH_LENGTH} символов`,//сообщение об ошибке
 );
 
+const blockSubmitButton = function () {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Публикую...';
+};
+
+const unblockSubmitButton = function () {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Опубликовать';
+};
+
 /*Добавляет функцию - создающую обработчик событий с методом .validate(), и, если форма валидна,
 данные формы запишутся в объект formData и отправятся на сервер, параметр - колбэк, будет вызван при успешной/неуспешной отправке формы*/
 
@@ -87,9 +97,16 @@ const formSubmit = function (onSuccess, onFail) {
 
     const isValid = pristine.validate();
     if (isValid) {
+      blockSubmitButton();
       sendData(
-        () => onSuccess(),
-        () => onFail(),
+        () => {
+          onSuccess();
+          unblockSubmitButton();
+        },
+        () => {
+          onFail();
+          unblockSubmitButton();
+        },
         new FormData(evt.target),
       );
     }
