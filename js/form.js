@@ -43,6 +43,8 @@ function closeUploadOverlay () {
 const onSuccessfulSending = function () {
   closeUploadOverlay();
   getSuccessMessage();
+  resetEffets();
+  resetScaleInput();
 };
 
 const onFailSending = function () {
