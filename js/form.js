@@ -38,6 +38,7 @@ function closeUploadOverlay () {
 
   document.removeEventListener('keydown', onUploadOverlayEscKeydown);
   uploadFileInput.value = '';
+  commentField.value = '';
 }
 
 const onSuccessfulSending = function () {

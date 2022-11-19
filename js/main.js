@@ -5,7 +5,7 @@ import {getData} from './api.js';
 import {onFormChange} from './effects.js';
 import {getThumbnails} from './thumbnails-rendering.js';
 
-//Вызов функции, аргументом передается функция закрытия оверлея - колбэк
+//Вызов функции,срабатаывющей при отправке формы
 formSubmit(onSuccessfulSending, onFailSending);
 
 //Вызов функции для получения фото других пользователей
