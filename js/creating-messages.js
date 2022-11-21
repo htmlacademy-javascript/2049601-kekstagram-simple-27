@@ -17,9 +17,14 @@ const onMessageEscKeydown = (evt) => {
 
 //Закрытие окна с сообщением по нажатию на произвольную область, кроме самого окна с сообщением (обработчик)
 const onWindowClick = (evt) => {
-  if (evt.target === message) {
-    closeMessage();
+
+  const target = evt.target;
+  if (target.closest('.success__inner') || target.closest('.error__inner'))
+  {
+    return;
   }
+
+  closeMessage();
 };
 
 //Закрытие окна с сообщением, удаление обработчиков
