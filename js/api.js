@@ -1,7 +1,10 @@
 import {showAlert} from './util.js';
 
-const getData = function (onSuccess) {
-  fetch('https://27.javascript.pages.academy/kekstagram-simple/data')
+const LINK_TO_GET_DATA = 'https://27.javascript.pages.academy/kekstagram-simple/data';
+const LINK_TO_SEND_DATA = 'https://27.javascript.pages.academy/kekstagram-simple';
+
+const getData = (onSuccess) => {
+  fetch(LINK_TO_GET_DATA)
     .then((response) => response.json())
     .then((data) => onSuccess(data))
     .catch(() => {
@@ -9,9 +12,9 @@ const getData = function (onSuccess) {
     });
 };
 
-const sendData = function (onSuccess, onFail, body) {
+const sendData = (onSuccess, onFail, body) => {
   fetch(
-    'https://27.javascript.pages.academy/kekstagram-simple',
+    LINK_TO_SEND_DATA,
     {
       method: 'POST',
       body,
@@ -26,6 +29,5 @@ const sendData = function (onSuccess, onFail, body) {
     })
     .catch(() => onFail());
 };
-
 
 export {getData, sendData};

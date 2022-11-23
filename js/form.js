@@ -9,7 +9,7 @@ const MAX_COMMENTH_LENGTH = 140;
 const form = document.querySelector('.img-upload__form');
 const uploadFileInput = document.querySelector('#upload-file');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
-const closeUploadOverlayElement = document.querySelector('#upload-cancel');
+const closeUploadOverlayButton = document.querySelector('#upload-cancel');
 const commentField = document.querySelector('.text__description');
 const submitButton = document.querySelector('.img-upload__submit');
 
@@ -23,7 +23,7 @@ const onUploadOverlayEscKeydown = (evt) => {
 };
 
 //Функция открывает оверлей загрузки фото
-const openUploadOverlay = function () {
+const openUploadOverlay = () => {
   uploadOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
   resetEffets();
@@ -33,22 +33,24 @@ const openUploadOverlay = function () {
 
 //Функция закрывает оверлей загрузки фото
 function closeUploadOverlay () {
-  uploadOverlay.classList.add('hidden');
-  document.body.classList.remove('modal-open');
+  if (!document.body.classList.contains('showed-error')) {
+    uploadOverlay.classList.add('hidden');
+    document.body.classList.remove('modal-open');
 
-  document.removeEventListener('keydown', onUploadOverlayEscKeydown);
-  uploadFileInput.value = '';
-  commentField.value = '';
+    document.removeEventListener('keydown', onUploadOverlayEscKeydown);
+    uploadFileInput.value = '';
+    commentField.value = '';
+  }
 }
 
-const onSuccessfulSending = function () {
+const onSuccessfulSending = () => {
   closeUploadOverlay();
   getSuccessMessage();
   resetEffets();
   resetScaleInput();
 };
 
-const onFailSending = function () {
+const onFailSending = () => {
   getErrorMessage();
 };
 
@@ -58,7 +60,7 @@ uploadFileInput.addEventListener('change', () => {
 });
 
 //Добавляет обработчик событий  - при нажатии на кнопку закрытия оверлея, оверлей закроется
-closeUploadOverlayElement.addEventListener('click', () => {
+closeUploadOverlayButton.addEventListener('click', () => {
   closeUploadOverlay();
 });
 
@@ -70,9 +72,9 @@ const pristine = new Pristine(form, {
 });
 
 //2. Функция проверки
-const validateTextarea = function (value) {
+function validateTextarea(value) {
   return checkStringLength(value, MIN_COMMENTH_LENGTH, MAX_COMMENTH_LENGTH);
-};
+}
 
 //3. Вызывает метод .addValidator() для описания валидации
 pristine.addValidator(
@@ -81,12 +83,12 @@ pristine.addValidator(
   `Длина комментария не может быть меньше ${MIN_COMMENTH_LENGTH} и больше ${MAX_COMMENTH_LENGTH} символов`,//сообщение об ошибке
 );
 
-const blockSubmitButton = function () {
+const blockSubmitButton = () => {
   submitButton.disabled = true;
   submitButton.textContent = 'Публикую...';
 };
 
-const unblockSubmitButton = function () {
+const unblockSubmitButton = () => {
   submitButton.disabled = false;
   submitButton.textContent = 'Опубликовать';
 };
@@ -94,7 +96,7 @@ const unblockSubmitButton = function () {
 /*Добавляет функцию - создающую обработчик событий с методом .validate(), и, если форма валидна,
 данные формы запишутся в объект formData и отправятся на сервер, параметр - колбэк, будет вызван при успешной/неуспешной отправке формы*/
 
-const formSubmit = function (onSuccess, onFail) {
+const formSubmit = (onSuccess, onFail) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 

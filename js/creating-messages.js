@@ -11,7 +11,7 @@ let message;
 //Закрытие окна с сообщением по нажатию Esc (обработчик)
 const onMessageEscKeydown = (evt) => {
   if(isEscapeKey(evt)) {
-    closeMessage();
+    onMessageClose();
   }
 };
 
@@ -24,30 +24,32 @@ const onWindowClick = (evt) => {
     return;
   }
 
-  closeMessage();
+  onMessageClose();
 };
 
 //Закрытие окна с сообщением, удаление обработчиков
-function closeMessage() {
+function onMessageClose() {
   message.remove();
+  document.body.classList.remove('showed-error');
   document.removeEventListener('keydown', onMessageEscKeydown);
   document.removeEventListener('click', onWindowClick);
 }
 
 //Добавление окна с сообщением при удачной загрузке изображения, добавление обработчиков
-const getSuccessMessage = function () {
+const getSuccessMessage = () => {
   message = successMessage;
   document.body.append(successMessage);
-  successButton.addEventListener('click', closeMessage);
+  successButton.addEventListener('click', onMessageClose);
   document.addEventListener('keydown', onMessageEscKeydown);
   document.addEventListener('click', onWindowClick);
 };
 
 //Добавление окна с сообщением при ошибке, добавление обработчиков
-const getErrorMessage = function () {
+const getErrorMessage = () => {
   message = errorMessage;
   document.body.append(errorMessage);
-  errorButton.addEventListener('click', closeMessage);
+  document.body.classList.add('showed-error');
+  errorButton.addEventListener('click', onMessageClose);
   document.addEventListener('keydown', onMessageEscKeydown);
   document.addEventListener('click', onWindowClick);
 };

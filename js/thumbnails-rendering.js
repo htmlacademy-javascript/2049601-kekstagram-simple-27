@@ -6,15 +6,17 @@ const photoTemplate = document.querySelector('#picture').content.querySelector('
 
 /*Функция, добавляющая, заполненное полученными от сервера миниаютюрами фото, хранилище
 в контейнер для изображений от других пользователей*/
-const getThumbnails = function (data) {
+const getThumbnails = (data) => {
   //Создаем хранилище для создаваемых миниатюр фото других пользователей
   const picturesFragment = document.createDocumentFragment();
 
   //Проходимся по массиву с объектами, получая данные для вставки в шаблон и складывая их в хранилище
   data.forEach(({url, description, comments, likes}) => {
     const photo = photoTemplate.cloneNode(true);
-    photo.querySelector('.picture__img').src = url;
-    photo.querySelector('.picture__img').alt = description;
+    const picture = photo.querySelector('.picture__img');
+
+    picture.src = url;
+    picture.alt = description;
     photo.querySelector('.picture__comments').textContent = comments;
     photo.querySelector('.picture__likes').textContent = likes;
 
