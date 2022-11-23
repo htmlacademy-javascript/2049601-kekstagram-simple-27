@@ -16,11 +16,6 @@ const checkStringLength = function (value, minLength, maxLength) {
   return value.length >= minLength && value.length <= maxLength;
 };
 
-//Функция, возвращающая индекс элемента массива данных
-const getRandomArrayElement = function (еlement) {
-  return еlement[getRandomIntInclusive(0, еlement.length - 1)];
-};
-
 //Проверка нажатия клавиши Esc
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
@@ -48,4 +43,4 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-export {getRandomIntInclusive, checkStringLength, getRandomArrayElement, isEscapeKey, showAlert};
+export {getRandomIntInclusive, checkStringLength, isEscapeKey, showAlert};
