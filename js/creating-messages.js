@@ -11,7 +11,7 @@ let message;
 //Закрытие окна с сообщением по нажатию Esc (обработчик)
 const onMessageEscKeydown = (evt) => {
   if(isEscapeKey(evt)) {
-    closeMessage();
+    onMessageClose();
   }
 };
 
@@ -24,11 +24,11 @@ const onWindowClick = (evt) => {
     return;
   }
 
-  closeMessage();
+  onMessageClose();
 };
 
 //Закрытие окна с сообщением, удаление обработчиков
-function closeMessage() {
+function onMessageClose() {
   message.remove();
   document.removeEventListener('keydown', onMessageEscKeydown);
   document.removeEventListener('click', onWindowClick);
@@ -38,7 +38,7 @@ function closeMessage() {
 const getSuccessMessage = function () {
   message = successMessage;
   document.body.append(successMessage);
-  successButton.addEventListener('click', closeMessage);
+  successButton.addEventListener('click', onMessageClose);
   document.addEventListener('keydown', onMessageEscKeydown);
   document.addEventListener('click', onWindowClick);
 };
@@ -47,7 +47,7 @@ const getSuccessMessage = function () {
 const getErrorMessage = function () {
   message = errorMessage;
   document.body.append(errorMessage);
-  errorButton.addEventListener('click', closeMessage);
+  errorButton.addEventListener('click', onMessageClose);
   document.addEventListener('keydown', onMessageEscKeydown);
   document.addEventListener('click', onWindowClick);
 };
