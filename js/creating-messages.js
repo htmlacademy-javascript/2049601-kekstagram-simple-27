@@ -35,7 +35,7 @@ function onMessageClose() {
 }
 
 //Добавление окна с сообщением при удачной загрузке изображения, добавление обработчиков
-const getSuccessMessage = function () {
+const getSuccessMessage = () => {
   message = successMessage;
   document.body.append(successMessage);
   successButton.addEventListener('click', onMessageClose);
@@ -44,7 +44,7 @@ const getSuccessMessage = function () {
 };
 
 //Добавление окна с сообщением при ошибке, добавление обработчиков
-const getErrorMessage = function () {
+const getErrorMessage = () => {
   message = errorMessage;
   document.body.append(errorMessage);
   errorButton.addEventListener('click', onMessageClose);

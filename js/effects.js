@@ -57,9 +57,9 @@ const effectLevelElemet = document.querySelector('.effect-level__value');
 
 let chosenEffect = DEFAULT_EFFECT;
 
-const isDefault = function () {
+function isDefault() {
   return chosenEffect === DEFAULT_EFFECT;
-};
+}
 
 noUiSlider.create(sliderElement, {
   range: {
@@ -71,7 +71,7 @@ noUiSlider.create(sliderElement, {
   connect: 'lower',
 },);
 
-const updateSlider = function () {
+const updateSlider = () => {
   sliderElement.classList.remove('hidden');
 
   sliderElement.noUiSlider.updateOptions({
@@ -90,12 +90,12 @@ const updateSlider = function () {
   }
 };
 
-const resetEffets = function () {
+const resetEffets = () => {
   chosenEffect = DEFAULT_EFFECT;
   updateSlider();
 };
 
-const onFormChange = function (evt) {
+const onFormChange = (evt) => {
   if (!evt.target.classList.contains('effects__radio')) {
     return;
   }

@@ -1,13 +1,12 @@
 //Находим контейнер для изображений от других пользователей
 const picturesListElement = document.querySelector('.pictures');
 
-
 //Находим в документе шаблон, который мы будем копировать
 const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 /*Функция, добавляющая, заполненное полученными от сервера миниаютюрами фото, хранилище
 в контейнер для изображений от других пользователей*/
-const getThumbnails = function (data) {
+const getThumbnails = (data) => {
   //Создаем хранилище для создаваемых миниатюр фото других пользователей
   const picturesFragment = document.createDocumentFragment();
 
