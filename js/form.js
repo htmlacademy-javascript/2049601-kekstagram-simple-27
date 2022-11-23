@@ -9,7 +9,7 @@ const MAX_COMMENTH_LENGTH = 140;
 const form = document.querySelector('.img-upload__form');
 const uploadFileInput = document.querySelector('#upload-file');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
-const closeUploadOverlayElement = document.querySelector('#upload-cancel');
+const closeUploadOverlayButton = document.querySelector('#upload-cancel');
 const commentField = document.querySelector('.text__description');
 const submitButton = document.querySelector('.img-upload__submit');
 
@@ -58,7 +58,7 @@ uploadFileInput.addEventListener('change', () => {
 });
 
 //Добавляет обработчик событий  - при нажатии на кнопку закрытия оверлея, оверлей закроется
-closeUploadOverlayElement.addEventListener('click', () => {
+closeUploadOverlayButton.addEventListener('click', () => {
   closeUploadOverlay();
 });
 

@@ -52,8 +52,8 @@ const DEFAULT_EFFECT = EFFECTS[0];
 const image = document.querySelector('.img-upload__preview img');
 const form = document.querySelector('.img-upload__form');
 
-const sliderElement = document.querySelector('.effect-level__slider');
-const effectLevelElemet = document.querySelector('.effect-level__value');
+const slider = document.querySelector('.effect-level__slider');
+const effectLevel = document.querySelector('.effect-level__value');
 
 let chosenEffect = DEFAULT_EFFECT;
 
@@ -61,7 +61,7 @@ function isDefault() {
   return chosenEffect === DEFAULT_EFFECT;
 }
 
-noUiSlider.create(sliderElement, {
+noUiSlider.create(slider, {
   range: {
     min: chosenEffect.min,
     max: chosenEffect.max,
@@ -72,9 +72,9 @@ noUiSlider.create(sliderElement, {
 },);
 
 const updateSlider = () => {
-  sliderElement.classList.remove('hidden');
+  slider.classList.remove('hidden');
 
-  sliderElement.noUiSlider.updateOptions({
+  slider.noUiSlider.updateOptions({
     range: {
       min: chosenEffect.min,
       max: chosenEffect.max,
@@ -84,7 +84,7 @@ const updateSlider = () => {
   });
 
   if (isDefault()) {
-    sliderElement.classList.add('hidden');
+    slider.classList.add('hidden');
     image.style.filter = '';
     image.className = '';
   }
@@ -108,9 +108,9 @@ const onFormChange = (evt) => {
 
 form.addEventListener ('change', onFormChange);
 
-sliderElement.noUiSlider.on('update', () => {
-  effectLevelElemet.value = sliderElement.noUiSlider.get();
-  image.style.filter = `${chosenEffect.filter}(${effectLevelElemet.value}${chosenEffect.unit})`;
+slider.noUiSlider.on('update', () => {
+  effectLevel.value = slider.noUiSlider.get();
+  image.style.filter = `${chosenEffect.filter}(${effectLevel.value}${chosenEffect.unit})`;
 });
 
 export {resetEffets};
