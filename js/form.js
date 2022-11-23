@@ -33,12 +33,14 @@ const openUploadOverlay = () => {
 
 //Функция закрывает оверлей загрузки фото
 function closeUploadOverlay () {
-  uploadOverlay.classList.add('hidden');
-  document.body.classList.remove('modal-open');
+  if (!document.body.classList.contains('showed-error')) {
+    uploadOverlay.classList.add('hidden');
+    document.body.classList.remove('modal-open');
 
-  document.removeEventListener('keydown', onUploadOverlayEscKeydown);
-  uploadFileInput.value = '';
-  commentField.value = '';
+    document.removeEventListener('keydown', onUploadOverlayEscKeydown);
+    uploadFileInput.value = '';
+    commentField.value = '';
+  }
 }
 
 const onSuccessfulSending = () => {

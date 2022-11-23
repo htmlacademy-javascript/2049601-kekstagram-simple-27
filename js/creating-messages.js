@@ -30,6 +30,7 @@ const onWindowClick = (evt) => {
 //Закрытие окна с сообщением, удаление обработчиков
 function onMessageClose() {
   message.remove();
+  document.body.classList.remove('showed-error');
   document.removeEventListener('keydown', onMessageEscKeydown);
   document.removeEventListener('click', onWindowClick);
 }
@@ -47,6 +48,7 @@ const getSuccessMessage = () => {
 const getErrorMessage = () => {
   message = errorMessage;
   document.body.append(errorMessage);
+  document.body.classList.add('showed-error');
   errorButton.addEventListener('click', onMessageClose);
   document.addEventListener('keydown', onMessageEscKeydown);
   document.addEventListener('click', onWindowClick);
