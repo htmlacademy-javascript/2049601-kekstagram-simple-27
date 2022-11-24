@@ -4,8 +4,8 @@ import {resetEffets} from './effects.js';
 import {getSuccessMessage, getErrorMessage} from './creating-messages.js';
 import {sendData} from './api.js';
 
-const MIN_COMMENTH_LENGTH = 20;
-const MAX_COMMENTH_LENGTH = 140;
+const MIN_COMMENT_LENGTH = 20;
+const MAX_COMMENT_LENGTH = 140;
 const form = document.querySelector('.img-upload__form');
 const uploadFileInput = document.querySelector('#upload-file');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
@@ -72,15 +72,13 @@ const pristine = new Pristine(form, {
 });
 
 //2. Функция проверки
-function validateTextarea(value) {
-  return checkStringLength(value, MIN_COMMENTH_LENGTH, MAX_COMMENTH_LENGTH);
-}
+const validateTextarea = (value) => checkStringLength(value, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH);
 
 //3. Вызывает метод .addValidator() для описания валидации
 pristine.addValidator(
   commentField, //элемент формы, который мы хотим валидировать
   validateTextarea, //функция проверки
-  `Длина комментария не может быть меньше ${MIN_COMMENTH_LENGTH} и больше ${MAX_COMMENTH_LENGTH} символов`,//сообщение об ошибке
+  `Длина комментария не может быть меньше ${MIN_COMMENT_LENGTH} и больше ${MAX_COMMENT_LENGTH} символов`,//сообщение об ошибке
 );
 
 const blockSubmitButton = () => {

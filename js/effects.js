@@ -57,9 +57,7 @@ const effectLevel = document.querySelector('.effect-level__value');
 
 let chosenEffect = DEFAULT_EFFECT;
 
-function isDefault() {
-  return chosenEffect === DEFAULT_EFFECT;
-}
+const isDefault = () => chosenEffect === DEFAULT_EFFECT;
 
 noUiSlider.create(slider, {
   range: {
