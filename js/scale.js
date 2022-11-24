@@ -23,7 +23,7 @@ const onSmallerButtonClick = () => {
   scaleImage(newValue);
 };
 
-const onBiggeButtonClick = () => {
+const onBiggerButtonClick = () => {
   const value = parseInt(scaleInput.value, 10);
   let newValue = value + STEP_SCALE;
   if (newValue > MAX_SCALE) {
@@ -38,6 +38,6 @@ const resetScaleInput = () => {
 };
 
 smallerButton.addEventListener('click', onSmallerButtonClick);
-biggerButton.addEventListener('click', onBiggeButtonClick);
+biggerButton.addEventListener('click', onBiggerButtonClick);
 
 export {resetScaleInput};

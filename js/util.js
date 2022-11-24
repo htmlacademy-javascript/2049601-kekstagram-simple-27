@@ -1,9 +1,7 @@
 const ALERT_SHOW_TIME = 10000;
 
 //Функция для проверки длины строки
-function checkStringLength(value, minLength, maxLength) {
-  return value.length >= minLength && value.length <= maxLength;
-}
+const checkStringLength = (value, minLength, maxLength) => value.length >= minLength && value.length <= maxLength;
 
 //Проверка нажатия клавиши Esc
 const isEscapeKey = (evt) => evt.key === 'Escape';
